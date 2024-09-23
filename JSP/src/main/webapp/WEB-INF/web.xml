@@ -9,4 +9,14 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>confirmPizza.do</display-name>
+    <servlet-name>confirmPizza.do</servlet-name>
+    <servlet-class>controller.PizzaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>confirmPizza.do</servlet-name>
+    <url-pattern>/confirmPizza.do</url-pattern>
+  </servlet-mapping>
 </web-app>

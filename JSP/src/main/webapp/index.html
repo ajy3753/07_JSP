@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +32,7 @@
       </li>
    </ol>
 
-   <a href="views/01_ScriptingElment.jsp">view detail</a>
+   <a href="views/01_ScriptingElement.jsp">view detail</a>
 
    <hr>
 
@@ -50,7 +49,16 @@
             <li>import : 자바의 import와 같은 의미</li>
             <li>errorPage : 해당 JSP 상에 오류 발생했을 경우에 보여줄 여러 에러 페이지를 기술 </li>
          </ul>
+         <a href="views/02_directivePage.jsp">view detail</a>
       </li>
+      <li>
+         include 지시어 : 현재 JSP 상에 또다른 JSP를 포함시키고자 할 때 사용하는 지시어 <br>
+         <a href="views/03_directiveInclude.jsp">view detail</a>
+      </li>
+      <li>taglib 지시어 : JSP 기능을 좀 더 확장시킬 수 있는 추가적인 라이브러리 등록하는 문구</li>
    </ol>
+
+   <h2>피자 주문 페이지(JSP) -> 주문요청 -> 주문요청 처리 Servlet -> 피자 결제 페이지(응답JSP)</h2>
+   <a href="views/pizza/pizzaOrderForm.jsp">피자 주문 페이지</a>
 </body>
 </html>
