@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.board.model.vo.Category, java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.board.model.vo.Category, java.util.ArrayList" %>
 <%
 	ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("categorys");
 %>
@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>일반게시판 게시글 작성</title>
 
 <style>
     .outer{
@@ -36,23 +36,24 @@
 <body>
 
     <%@ include file="../common/menubar.jsp" %>
+    
     <div class="outer">
         <br>
         <h2 align="center">일반게시글 작성하기</h2>
         <br>
 
-        <form action="<%=contextPath%>/insert.bo" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="userName" value="<%=loginUser.getUserNo()%>">
-            <table border="1" align="center">
+		<form action="<%=contextPath%>/insert.bo" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="userName" value="<%=loginUser.getUserNo()%>">
+			<table border="1" align="center">
                 <tr>
-                    <th width="70">카테고리</th>
-                    <td width="500">
-                        <select name="category">
-                        	<% for(Category c : list) { %>
-                            	<option value="<%=c.getCategoryNo()%>"><%=c.getCategoryName() %></option>
-                            <% } %>
+					<th width="70">카테고리</th>
+					<td width="500">
+  						<select name="category">
+							<% for(Category c : list) { %>
+								<option value="<%=c.getCategoryNo()%>"><%=c.getCategoryName() %></option>
+							<% } %>
                         </select>
-                    </td>
+					</td>
                 </tr>
                 <tr>
                     <th>제목</th>

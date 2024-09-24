@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.common.PageInfo, java.util.ArrayList, com.board.model.vo.Board" %>
 <%
     PageInfo pi = (PageInfo)request.getAttribute("pi");
@@ -54,12 +53,14 @@
         
         <table align="center" class="list-area">
             <thead>
-                <th width="70">글번호</th>
-                <th width="80">카테고리</th>
-                <th width="300">제목</th>
-                <th width="100">작성자</th>
-                <th width="50">조회수</th>
-                <th width="100">작성일</th>
+            	<tr>
+	                <th width="70">글번호</th>
+	                <th width="80">카테고리</th>
+	                <th width="300">제목</th>
+	                <th width="100">작성자</th>
+	                <th width="50">조회수</th>
+	                <th width="100">작성일</th>
+                </tr>
             </thead>
             <tbody>
             	<% if(list.isEmpty()) { %>
@@ -80,6 +81,7 @@
 	           <% } %>
             </tbody>
         </table>
+        
         <script>
             //contextPath/detail.bo?bno=?
             function clickDetailPage(boardNo){
@@ -96,6 +98,7 @@
         </script>
         
         <br><br>
+        
         <div align="center">
         	<%if(currentPage > 1) { %>
             	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=currentPage - 1%>'">&lt;</button>
@@ -112,6 +115,5 @@
         	<% } %>
         </div>
     </div>
-
 </body>
 </html>

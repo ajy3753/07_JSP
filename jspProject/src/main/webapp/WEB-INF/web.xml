@@ -51,16 +51,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>updatePwd.me</display-name>
-    <servlet-name>updatePwd.me</servlet-name>
-    <servlet-class>com.member.controller.MemberPwdUpdateController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>updatePwd.me</servlet-name>
-    <url-pattern>/updatePwd.me</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>myPage.me</display-name>
     <servlet-name>myPage.me</servlet-name>
     <servlet-class>com.member.controller.MyPageController</servlet-class>
@@ -68,6 +58,16 @@
   <servlet-mapping>
     <servlet-name>myPage.me</servlet-name>
     <url-pattern>/myPage.me</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>updatePwd.me</display-name>
+    <servlet-name>updatePwd.me</servlet-name>
+    <servlet-class>com.member.controller.MemberPwdUpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updatePwd.me</servlet-name>
+    <url-pattern>/updatePwd.me</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -91,16 +91,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>BoardListController</display-name>
-    <servlet-name>BoardListController</servlet-name>
-    <servlet-class>com.board.controller.BoardListController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BoardListController</servlet-name>
-    <url-pattern>/BoardListController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>list.bo</display-name>
     <servlet-name>list.bo</servlet-name>
     <servlet-class>com.board.controller.BoardListController</servlet-class>
@@ -121,12 +111,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>enrollForm.bo</display-name>
-    <servlet-name>enrollForm.bo</servlet-name>
+    <display-name>BoardEnrollController</display-name>
+    <servlet-name>BoardEnrollController</servlet-name>
     <servlet-class>com.board.controller.BoardEnrollController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>enrollForm.bo</servlet-name>
+    <servlet-name>BoardEnrollController</servlet-name>
     <url-pattern>/enrollForm.bo</url-pattern>
   </servlet-mapping>
   <servlet>
@@ -138,5 +128,25 @@
   <servlet-mapping>
     <servlet-name>insert.bo</servlet-name>
     <url-pattern>/insert.bo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>updateForm.bo</display-name>
+    <servlet-name>updateForm.bo</servlet-name>
+    <servlet-class>com.board.controller.BoardUpdateFormController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateForm.bo</servlet-name>
+    <url-pattern>/updateForm.bo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardUpdateController</display-name>
+    <servlet-name>BoardUpdateController</servlet-name>
+    <servlet-class>com.board.controller.BoardUpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardUpdateController</servlet-name>
+    <url-pattern>/BoardUpdateController</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.board.model.vo.Board, com.board.model.vo.Attachment" %>
 
 <%
@@ -11,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>일반게시글 상세</title>
 
 <style>
     .outer{
@@ -27,8 +26,13 @@
         border: 1px solid white;
         border-collapse: collapse;
     }
+    
     .outer > table tr, .outer > table td{
-        border: 1px solid white;
+    	border: 1px solid white;
+    }
+    
+    .outer table a{
+    	color: white;
     }
 </style>
 
@@ -65,7 +69,11 @@
             <tr>
             	<th>청부파일</th>
             	<td colspan="3">
-                    
+                	<%if(at == null) { %> 
+	                    첨부파일이 없습니다. 
+                    <% } else {%>
+	                    <a download="<%=at.getOriginName() %>" href="<%=contextPath%>/<%=at.getFilePath() + at.getChangeName()%>"><%=at.getOriginName() %></a>
+                	<%} %>
                 </td>
             </tr>
         </table>
@@ -74,7 +82,7 @@
         <div align="center">
             <a href="<%=contextPath%>/list.bo?cpage=1" class="btn btn-sm btn-secondary"> 목록가기</a>
             <% if(loginUser != null && loginUser.getUserId().equals(b.getBoardWriter())) { %>
-                <a href="" class="btn btn-sm btn-warning">수정하기</a>
+                <a href="<%=contextPath %>/updateForm.bo?bno=<%=b.getBoardNo()%>" class="btn btn-sm btn-warning">수정하기</a>
                 <a href="" class="btn btn-sm btn-danger">삭제하기</a>
             <% } %>
         </div>

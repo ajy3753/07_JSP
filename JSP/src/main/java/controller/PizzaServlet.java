@@ -1,11 +1,12 @@
 package controller;
 
+import java.io.IOException;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * Servlet implementation class PizzaServlet
@@ -39,6 +40,75 @@ public class PizzaServlet extends HttpServlet {
 		String payment = request.getParameter("payment");
 		
 		// 3) 요청 처리 (DB에 sql문 실행 > service > dao)
+		int price = 0;
+		
+		switch(pizza) {
+		case "콤비네이션" :
+			price += 5000;
+			break;
+		case "치즈피자" :
+		case "포테이토" :
+			price += 6000;
+			break;
+		default :
+			price += 7000;
+			break;
+		}
+		
+		if(toppings != null) {
+			for(String topping : toppings) {
+				switch(topping) {
+				case "치즈추가" :
+				case "고구마무스" :
+					price += 1500;
+					break;
+				case "치즈바이트" :
+				case "파인애플" :
+					price += 2000;
+					break;
+				default :
+					price += 2500;
+					break;
+				}
+			}
+		}
+		
+		if(side != null) {
+			for(String s : side) {
+				switch(s) {
+				case "콜라" :
+				case "사이다" :
+					price += 1500;
+					break;
+				case "갈릭" :
+				case "피클" :
+					price += 500;
+					break;
+				default :
+					price += 200;
+				}
+			}
+		}
+		
+		// 4) 요청 처리 후 사용자가 보게 될 응답 페이지를 만들어서 넘겨주기
+		// -> 응답 페이지(JSP)를 선택해서 포워딩
+		// 단, 응답 페이지에 필요한 데이터가 없다면 담아서 포워딩 할 것
+		request.setAttribute("name", name);
+		request.setAttribute("phone", phone);
+		request.setAttribute("address", address);
+		request.setAttribute("message", message);
+		
+		request.setAttribute("pizza", pizza);
+		request.setAttribute("toppings", toppings);
+		request.setAttribute("side", side);
+		request.setAttribute("payment", payment);
+		request.setAttribute("price", price);
+		
+		// 5) 응답할 뷰 선택
+		RequestDispatcher view = request.getRequestDispatcher("views/pizza/pizzaPayment.jsp");
+		
+		// 6) 선택한 뷰가 사용자에게 보여지도록 포워딩
+		view.forward(request, response);
 	}
 
 	/**
