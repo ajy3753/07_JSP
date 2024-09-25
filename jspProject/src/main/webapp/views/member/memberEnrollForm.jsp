@@ -32,7 +32,7 @@
                 <tr>
                     <td>* 아이디</td>
                     <td><input type="text" name="userId" maxlength="12" required></td>
-                    <td><button type="button" onclick="">중복확인</button></td>
+                    <td><button type="button" onclick="idCheck()">중복확인</button></td>
                 </tr>
                 <tr>
                     <td>* 비밀번호</td>
@@ -118,6 +118,41 @@
                 alert("비밀번호가 일치하지 않습니다.");
                 return false;
             }
+        }
+
+        function idCheck() {
+            // 중복확인 버튼 클릭 시 사용자가 입력한 아이디값을 서버에 보내서 조회 요청 -> 응답받기
+            // 1) 사용불가 -> alert 메시지 출력(이미 존재하는 아이디 입니다.)
+            // 2) 사용가능 -> 진짜 사용할 거냐? -> 더이상 아이디 수정 못하게 비활성화
+            const idInput = document.querySelector("input[name=userId]");
+
+            $.ajax ({
+                type : "get",
+                url : "inCheck.me",
+                data : {
+                    checkId : idInput.value
+                },
+                success : function(result) {
+                    if(result === "NNNNY") {
+                        if(confirm("사용가능한 아이디입니다. 정말 사용하시겠습니까?")) {
+                            idInput.setAttribute("readonly", true);
+
+                            const submitBtn = document.querySelector("#enroll-form input[type=submit]");
+                            submitBtn.removeAttribute("disabled");
+                        }
+                        else {
+                            inInput.focus();
+                        }
+                    }
+                    else {
+                        alert("사용 불가능한 아이디입니다.");
+                        inInput.focus();s
+                    }
+                },
+                error : function(err) {
+                    console.log("실패", err);
+                }
+            })
         }
     </script>
 </body>

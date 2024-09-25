@@ -129,6 +129,15 @@ public class BoardService {
 		close(conn);
 		return result1 * result2;
 	}
+	
+	public ArrayList<Board> selectThumbnailList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().selectThumbnailList(conn);
+		close(conn);
+		
+		return list;
+	}
 }
 
 

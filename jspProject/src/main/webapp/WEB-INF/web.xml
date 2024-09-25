@@ -141,12 +141,52 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>BoardUpdateController</display-name>
-    <servlet-name>BoardUpdateController</servlet-name>
+    <display-name>update.bo</display-name>
+    <servlet-name>update.bo</servlet-name>
     <servlet-class>com.board.controller.BoardUpdateController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>BoardUpdateController</servlet-name>
-    <url-pattern>/BoardUpdateController</url-pattern>
+    <servlet-name>update.bo</servlet-name>
+    <url-pattern>/update.bo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>enrollForm.th</display-name>
+    <servlet-name>enrollForm.th</servlet-name>
+    <servlet-class>com.board.controller.ThumbnailEnrollFormController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>enrollForm.th</servlet-name>
+    <url-pattern>/enrollForm.th</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>list.th</display-name>
+    <servlet-name>list.th</servlet-name>
+    <servlet-class>com.board.controller.ThumbnailListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>list.th</servlet-name>
+    <url-pattern>/list.th</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>insert.th</display-name>
+    <servlet-name>insert.th</servlet-name>
+    <servlet-class>com.board.controller.ThumbnailInsertController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>insert.th</servlet-name>
+    <url-pattern>/insert.th</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjaxTestController</display-name>
+    <servlet-name>AjaxTestController</servlet-name>
+    <servlet-class>com.board.controller.AjaxTestController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxTestController</servlet-name>
+    <url-pattern>/AjaxTestController</url-pattern>
   </servlet-mapping>
 </web-app>

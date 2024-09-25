@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>AJAX</title>
+
+   <!-- jQuery -->
+   <script
+   src="https://code.jquery.com/jquery-3.7.1.min.js"
+   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+   crossorigin="anonymous"></script>
+   <script
+   src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
+   integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM="
+   crossorigin="anonymous"></script>
+</head>
+<body>
+   <h1>AJAX</h1>
+   <p>
+      서버로부터 데이터를 가져와 전체 페이지를 새로고침하지 않고 일부만 로드할 수 있게 하는 기법 <br>
+      우리가 기존에 사용하던 a 태그 요청 및 form submit 요청 방식은 "동기화 요청"이다 -> 응답페이지가 돌아와야만 화면을 볼 수 있다. (플리커 현상) <br>
+   </p>
+
+   <h3>1) 동기식 (a, form submit)</h3>
+   <ul>
+      <li>요청 처리 후 해당하는 응답 페이지가 돌아와야 다음 작업 가능</li>
+      <li>서버에 요청한 결과까지의 시간이 지연되면 무작정 계속 기다려야한다.(흰 페이지)</li>
+      <li>전체 페이지를 응답해주기 때문에 기본적으로 플리커 현상 발생</li>
+   </ul>
+
+   <h3>2) 비동기식 (ajax)</h3>
+   <ul>
+      <li>현재 페이지를 그대로 유지하면서 중간마다 추가적으로 필요한 정보를 요청할 수 있다.</li>
+      <li>요청을 보냈다고 해서 다른 페이지로 넘어가지 않는다.</li>
+      <li>요청을 보내고도 그에 해당하는 응답이 돌아오기 전에 다른 작업을 진행할 수 있다.</li>
+      <li>ex) 실시간 검색어, 검색 자동완성, 아이디 중복체크, 찜하기/해제, 추천, 댓글, 무한 스크롤 등</li>
+   </ul>
+
+   <hr>
+
+   <h2>비동기식 단점</h2>
+   <p>
+      - 현재 페이지에 지속적으로 리소스가 쌓임 -> 페이지가 느려질 수 있음 <br>
+      - 에러 발생 시 디버깅이 어려움 <br>
+      - 요청 처리 후에 돌아온 응답 데이터를 가지고 현재 페이지에 새로운 요소를 만들어서 붙여줘야함 -> dom을 개발자가 직접 컨트롤 해야함 <br>
+   </p>
+   <pre>
+      $.ajax ({
+         속성 : 값,
+         속성 : 값,
+         속성 : 값,
+         ...
+      })
+   </pre>
+
+   <h3>1) 주요 속성</h3>
+   <ul>
+      <li>url : 요청할 url (필수 속성)</li>
+      <li>type | method : 요청 전송 방식 (geet / post)</li>
+      <li>data : 요청 시 전달할 값</li>
+      <li>success : ajax 요청 성공 시 실행할 함수 정의</li>
+      <li>error : ajax 요청 실패 시 실행할 함수 정의</li>
+      <li>complete : ajax 요청 성공 여부와 상관없이 무조건 실행할 함수</li>
+   </ul>
+
+   <h3>2) 부가적인 속성</h3>
+      <ul>
+         <li>async : 서버와의 비동기 처리 방식 설정 여부 (기본값 true)</li>
+         <li>contentType : request의 데이터 인코딩 방식 정의 (보내는 쪽의 데이터 인코딩)</li>
+         <li>dataType : 서버에서 response로 오는 데이터의 데이터 형 설정, 값이 없다면 스마트하게 판단함</li>
+         <li>accept : 파라미터의 타입을 설정 (사용자 특화 된 파라미터 타입 설정 가능)</li>
+         <li>beforSend : ajax 요청을 하기 전 실행되는 이벤트 callback 함수 (데이터 가공 및 header 관련 설정)</li>
+         <li>cache : 요청 및 결과값을 scope에서 갖고 있지 않도록 하는 것 (기본값 true)</li>
+         <li>contents : jQuery에서 response의 데이터를 파싱하는 방식 정의</li>
+         <li>context : ajax 메소드 내 모든 영역에서 파싱 방식 정의</li>
+         <li>crossDomain : 타 도메인 호출 가능 여부 설정 (기본값 false)</li>
+         <li>dataFilter : response를 받았을 때 정상적인 값을 return 할 수 있도록 데이터와 데이터 타입 설정</li>
+         <li>timeout : 서버 요청 시 응답 대기 시간</li>
+      </ul>
+
+   <hr>
+
+   <h3>버튼 클릭 시 poset 방식으로 서버에 여러 개의 데이터 전송 및 응답</h3>
+   이름 : <input type="text" id="input1">
+   나이 : <input type="text" id="input2">
+   <button onclick="test()">전송</button>
+
+   <script>
+      function test() {
+         $.ajax ({
+            type : "post",
+            url : "http://localhost:8888/jsp/jqAjax.do",
+            data : {
+               name : $("#input1").val(),
+               age : document.querySelector("#input2").value
+            },
+            success : function(result) {
+               let memberList = JSON.parse(result);
+               const memberZone = document.getElementById("member-area");
+               for(let m of memberList) {
+                  memberZone.innerHTML += ("<li>" + m.userNo + " " + m.userName + " " + m.phone+ "</li>");
+               }
+            },
+            error : function() {
+               console.log("요청실패");
+            }
+         })
+      }
+   </script>
+</body>
+</html>

@@ -34,6 +34,14 @@ public class Member {
 		this.modifyDate = modifyDate;
 		this.status = status;
 	}
+	
+	// AjaxTestController
+	public Member(int userNo, String userName, String phone) {
+		super();
+		this.userNo = userNo;
+		this.userName = userName;
+		this.phone = phone;
+	}
 
 	// MemberInsertController
 	public Member(String userId, String userPwd, String userName, String phone, String email, String address,
