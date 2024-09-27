@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.board.model.vo.Board, com.board.model.vo.Attachment" %>
-
 <%
     Board b = (Board)request.getAttribute("board");
-
 	Attachment at = (Attachment)request.getAttribute("attachment");
 %>
 <!DOCTYPE html>
@@ -85,6 +83,95 @@
                 <a href="<%=contextPath %>/updateForm.bo?bno=<%=b.getBoardNo()%>" class="btn btn-sm btn-warning">수정하기</a>
                 <a href="" class="btn btn-sm btn-danger">삭제하기</a>
             <% } %>
+        </div>
+        
+        <br>
+
+        <div id="reply-area">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th>댓글작성</th>
+                        <% if(loginUser != null) { %>
+	                        <td>
+	                            <textarea id="reply-content" cols="50" rows="3" style="resize: none;"></textarea>
+	                        </td>
+	                        <td>
+	                            <button onclick="insertReply()">댓글등록</button>
+	                        </td>
+                        <% } else { %>
+                        	<td>
+	                            <textarea id="reply-content" cols="50" rows="3" style="resize: none;" readonly></textarea>
+	                        </td>
+	                        <td>
+	                            <button disabled>댓글등록</button>
+	                        </td>
+                        <% } %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td align="center"></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <script>
+                window.onload = function() {
+                    selectReplyList();
+                    setInterval(selectReplyList, 2000);
+                }
+
+                function selectReplyList() {
+                    $.ajax({
+                        url : "rlist.bo",
+                        contentType : "application/json",
+                        data : {
+                            bno : <%=b.getBoardNo()%>
+                        },
+                        success : function(res) {
+                            console.log("댓글 조회용 ajax 결과 도착");
+
+                            const replyBody = document.querySelector("#reply-area tbody");
+                            replyBody.innerHTML = "";
+                            
+                            for(let reply of res) {
+                                replyBody.innerHTML += ("<tr>" +
+                                                            "<td>" + reply.replyWriter + "</td>" +
+                                                            "<td>" + reply.replyContent + "</td>" +
+                                                            "<td>" + reply.createDate + "</td>"
+                                                        + "</tr>")
+                            };
+                        },
+                        error : function() {
+                            console.log("댓글 조회용 ajax 통신 실패");
+                        }
+                    })
+                }
+
+                function insertReply() {
+                    const boardNo = "<%=b.getBoardNo()%>";
+                    const content = document.querySelector("#reply-content").value;
+
+                    $.ajax({
+                        url : "rinsert.bo",
+                        data : {
+                            bno : boardNo,
+                            content : content
+                        },
+                        type : "post",
+                        success : function(res) {
+                            content.value = "";
+                            selectReplyList();
+                        },
+                        error : function() {
+                            console.log("댓글 작성 중 ajax 통신 실패");
+                        }
+                    })
+                }
+            </script>
         </div>
     </div>
 </body>

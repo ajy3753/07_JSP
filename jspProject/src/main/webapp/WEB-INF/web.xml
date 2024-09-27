@@ -189,4 +189,34 @@
     <servlet-name>AjaxTestController</servlet-name>
     <url-pattern>/AjaxTestController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjaxCheckController</display-name>
+    <servlet-name>AjaxCheckController</servlet-name>
+    <servlet-class>com.member.controller.AjaxCheckController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxCheckController</servlet-name>
+    <url-pattern>/AjaxCheckController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>rinsert.bo</display-name>
+    <servlet-name>rinsert.bo</servlet-name>
+    <servlet-class>com.board.controller.AjaxReplyInsertController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>rinsert.bo</servlet-name>
+    <url-pattern>/rinsert.bo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>rlist.bo</display-name>
+    <servlet-name>rlist.bo</servlet-name>
+    <servlet-class>com.board.controller.AjaxReplyListContoller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>rlist.bo</servlet-name>
+    <url-pattern>/rlist.bo</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
 import com.member.model.vo.Member;
 
 /**

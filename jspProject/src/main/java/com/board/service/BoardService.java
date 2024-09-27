@@ -12,6 +12,7 @@ import com.board.model.dao.BoardDao;
 import com.board.model.vo.Attachment;
 import com.board.model.vo.Board;
 import com.board.model.vo.Category;
+import com.board.model.vo.Reply;
 import com.common.PageInfo;
 
 public class BoardService {
@@ -134,6 +135,31 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		ArrayList<Board> list = new BoardDao().selectThumbnailList(conn);
+		close(conn);
+		
+		return list;
+	}
+	
+	// AjaxReplyInsertController
+	public int insertReply(Reply r) {
+		Connection conn = getConnection();
+		int result = new BoardDao().insertReply(conn, r);
+		
+		if(result > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+	
+	// AjaxReplyListController
+	public ArrayList<Reply> selectReplyList(int boardNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Reply> list = new BoardDao().selectReplyList(conn, boardNo);
 		close(conn);
 		
 		return list;

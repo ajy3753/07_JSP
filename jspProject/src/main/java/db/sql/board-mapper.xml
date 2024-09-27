@@ -126,5 +126,33 @@
 		  AND	FILE_LEVEL = 1
 		ORDER BY BOARD_NO DESC
 	</entry>
+	<entry key="insertReply">
+		INSERT
+		  INTO	REPLY
+		(
+			REPLY_NO,
+			REPLY_CONTENT,
+			REF_BNO,
+			REPLY_WRITER
+		)
+		VALUES (
+					SEQ_RNO.NEXTVAL,
+					?,
+					?,
+					?
+		
+		)
+	</entry>
+	<entry key="selectReplyList">
+		SELECT	REPLY_NO,
+				REPLY_CONTENT,
+				USER_ID,
+				TO_CHAR(CREATE_DATE, 'YY/MM/DD HH:MI') AS "CREATE_DATE"
+		 FROM	REPLY R
+		 JOIN	MEMBER M ON (REPLY_WRITER = USER_NO)
+		WHERE	R.STATUS = 'Y'
+		  AND	REF_BNO = ?
+		ORDER BY REPLY_NO DESC
+	</entry>
 </properties>
 
